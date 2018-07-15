@@ -2,6 +2,7 @@ from flask import request, redirect, render_template
 from app import app, db
 from models import Blog
 import cgi
+from sqlalchemy import desc
 
 def validate_entry(title, body):
     result = ""
@@ -44,6 +45,7 @@ def main_blog_listing():
         return redirect(f'/display_blog?id={new_blog_id}')    
  
     blogs = Blog.query.all()
+    blogs = Blog.query.order_by(Blog.pub_date.desc()).all()
     return render_template('blog_listings.html',
         title="Build A Blog", 
         blogs=blogs) 
