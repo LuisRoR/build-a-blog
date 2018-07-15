@@ -43,7 +43,7 @@ def main_blog_listing():
         new_blog_id = new_blog.id
         return redirect(f'/display_blog?id={new_blog_id}')    
  
-    blogs = Blog.query.filter_by(completed=False).all()
+    blogs = Blog.query.all()
     return render_template('blog_listings.html',
         title="Build A Blog", 
         blogs=blogs) 
@@ -58,38 +58,11 @@ def new_post():
 def display_blog():
     blog_id = int(request.args['id'])
     blog = Blog.query.get(blog_id)
-    blog.completed = False
     db.session.add(blog)
     db.session.commit()
 
     return render_template('display_blog.html', blog=blog)  
 
 
-
-
 if __name__ == '__main__':
     app.run()
-
-
-
-
-
-
-
-
-
-
-"""
-@app.route('/delete_task()', methods=['POST'])
-def delete_task():
-
-    blog_id = int(request.form['blog-id'])
-    print('^^^^^^^^^^^^^^^^^^^^^^^^^^', blog_id)
-    blog = Blog.query.get(blog_id)
-    blog.completed = True
-    db.session.add(blog)
-    db.session.commit()
-
-    return redirect('/display_post.html')
-
-"""
