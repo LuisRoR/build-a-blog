@@ -1,0 +1,21 @@
+
+<!doctype html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{'/static/styles/mainpage.css' }}"/>
+        <style>
+            .error {color: red; font-style: italic;}
+        </style>
+
+        <title>{{title}}</title>
+    </head>
+<body>
+    <div style='float: left'>
+        <a href="/blog">Main Blog Page</a>    |    <a href="/newpost">Add a Blog Entry</a>
+    </div>
+   
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
